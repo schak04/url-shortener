@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,29 +13,27 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Sept URL Shortener</h1>
-    <form onsubmit="handleSubmit()" method="POST" action="/">
+    <form onsubmit="handleSubmit()" method="POST">
         <label>Enter URL to shorten:
-            <input
-            type="text"
-            name="originalURL"
-            required
-            />
+            <input type="text" name="originalURL" required />
         </label>
         <button type="submit">Shorten</button>
     </form>
     <p>Here is your shortened URL:</p>
     <p id="shortenedURL"></p>
-    
+
     <footer>Built by Saptaparno Chakraborty</footer>
 
     <script>
         const shortenedURL = document.getElementById('shortenedURL');
         function handleSubmit(e) {
             e.preventDefault();
-            // shortenedURL.textContent = `${}`;
+            shortenedURL.textContent = `${}`;
         }
     </script>
 </body>
+
 </html>
