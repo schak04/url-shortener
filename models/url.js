@@ -5,6 +5,6 @@ const urlSchema = new mongoose.Schema({
     redirectTo: { type: String, required: true }
 }, { timestamps: true });
 
-const URL = mongoose.Model('URL', urlSchema);
+const URL = mongoose.model('URL', urlSchema);
 
 module.exports = URL;
