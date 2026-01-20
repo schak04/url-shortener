@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {displayUI, handleShorteningOfURL} = require('../controllers/url');
 
-router.route('/')
-    .get(displayUI)
-    .post(handleShorteningOfURL);
+router.get('/', displayUI);
+router.post('/shorten', handleShorteningOfURL);
 
 module.exports = router;
