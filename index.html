@@ -16,13 +16,12 @@
 
 <body>
     <h1>Sept URL Shortener</h1>
-    <form onsubmit="handleSubmit()" method="POST">
+    <form onsubmit="handleSubmit()" method="POST" action="/shorten">
         <label>Enter URL to shorten:
             <input type="text" name="originalURL" required />
         </label>
         <button type="submit">Shorten</button>
     </form>
-    <p>Here is your shortened URL:</p>
     <p id="shortenedURL"></p>
 
     <footer>&copy; <span id="currentYear">2026</span> Saptaparno Chakraborty</footer>
