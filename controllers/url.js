@@ -8,6 +8,7 @@ function displayUI(_req, res) {
 
 async function handleShorteningOfURL(req, res) {
     const {originalURL} = req.body.originalURL;
+    console.log(originalURL);
     if (!originalURL) {
         return res.status(400).send("No URL entered by user! Original URL required!!");
     }
