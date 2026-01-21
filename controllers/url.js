@@ -14,7 +14,7 @@ async function handleShorteningOfURL(req, res) {
         messageOnFormSubmission = "No URL received";
         return res.status(400).send("No URL entered by user! Original URL required!!");
     }
-    const shortenedURL = `https://sept.com/${nanoid(6)}`;
+    const shortenedURL = `https://sept.dev/${nanoid(6)}`;
     messageOnFormSubmission = `Here is your shortened URL: ${shortenedURL}`;
     
     await URL.create({
