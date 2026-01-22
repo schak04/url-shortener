@@ -10,17 +10,21 @@ function displayUI(_req, res) {
 async function handleShorteningOfURL(req, res) {
     const originalURL = req.body.originalURL;
     let messageOnFormSubmission = "";
-    if (!originalURL) {
-        messageOnFormSubmission = "No URL received";
-        return res.status(400).send("No URL entered by user! Original URL required!!");
+
+    try {
+        const shortenedURL = `https://sept.dev/${nanoid(6)}`;
+        messageOnFormSubmission = `Here is your shortened URL: ${shortenedURL}`;
+        const newURL = await URL.create({
+            shortened: shortenedURL,
+            redirectTo: originalURL
+        })
+        console.log("Successfully shortened URL:", newURL);
     }
-    const shortenedURL = `https://sept.dev/${nanoid(6)}`;
-    messageOnFormSubmission = `Here is your shortened URL: ${shortenedURL}`;
-    
-    await URL.create({
-        shortened: shortenedURL,
-        redirectTo: originalURL
-    })
+    catch (err) {
+        console.error(err.message);
+        messageOnFormSubmission = `Error occurred: ${err.message}`;
+        return res.status(400).send(`Error occurred: ${err.message}`);
+    }
 
     const data = await fs.readFile(path.join(__dirname, '..', 'index.html'), 'utf8');
     const finalHTML = data.replace('<p id="shortenedURL"></p>', `<p id="shortenedURL">${messageOnFormSubmission}</p>`)
