@@ -7,17 +7,22 @@ function displayUI(_req, res) {
     res.sendFile(path.join(__dirname, '..', 'index.html'));
 }
 
+function createShortID() {
+    return `${nanoid(6)}`;
+}
+
 async function handleShorteningOfURL(req, res) {
     const originalURL = req.body.originalURL;
+    const shortID = createShortID();
     let messageOnFormSubmission = "";
 
     try {
-        const shortenedURL = `https://sept.dev/${nanoid(6)}`;
-        messageOnFormSubmission = `Here is your shortened URL: ${shortenedURL}`;
         const newURL = await URL.create({
-            shortened: shortenedURL,
+            shortened: shortID,
             redirectTo: originalURL
         })
+        const baseURL = `${req.protocol}://${req.get("host")}`;
+        messageOnFormSubmission = `Here is your shortened URL: ${baseURL}/${newURL.shortened}`;
         console.log("Successfully shortened URL:", newURL);
     }
     catch (err) {
