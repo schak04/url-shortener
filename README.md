@@ -33,6 +33,12 @@ It generates unique short IDs for long URLs and redirects users efficiently usin
 5. If found -> server responds with HTTP redirect
 6. If not found -> returns 404 response
 
+## API Endpoints
+
+- `GET /` → Serves UI
+- `POST /shorten` → Creates short URL
+- `GET /:shortID` → Redirects to original URL
+
 ---
 
 ## Project Structure
