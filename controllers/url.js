@@ -36,7 +36,15 @@ async function handleShorteningOfURL(req, res) {
     res.send(finalHTML);
 }
 
+async function handleRedirectionOfURL(req, res) {
+    const id = req.params.shortID;
+    const url = await URL.findOne({shortened: id});
+    if (!url) return res.status(404).send("Page NOT found");
+    res.redirect(url.redirectTo);
+}
+
 module.exports = {
     displayUI,
-    handleShorteningOfURL
+    handleShorteningOfURL,
+    handleRedirectionOfURL
 };
